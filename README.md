@@ -1,3 +1,54 @@
+# How to run
+
+Set the facts and schema you want to test in the main.js file:
+
+```
+const f = [
+  ['gabriel', 'address', 'baker street, 109', true],
+  ['john', 'address', 'apple street, 10', true],
+  ['john', 'address', 'pine street, 88', true],
+  ['john', 'phone', '234-5678', true],
+  ['john', 'phone', '91234-5555', true],
+  ['john', 'phone', '234-5678', false],
+  ['gabriel', 'phone', '98888-1111', true],
+  ['gabriel', 'phone', '56789-1010', true],
+];
+
+const schema = [
+    ['address', 'cardinality', 'one'],
+    ['phone', 'cardinality', 'many']
+];
+```
+
+Then run:
+
+```
+node main.js
+```
+
+As output you will have all valid facts, and valid facts by schema. 
+
+```
+--- ALL VALID FACTS ---
+[ [ 'gabriel', 'address', 'baker street, 109', true ],
+  [ 'john', 'address', 'pine street, 88', true ],
+  [ [ 'john', 'phone', '91234-5555', true ],
+    [ 'gabriel', 'phone', '98888-1111', true ],
+    [ 'gabriel', 'phone', '56789-1010', true ] ] ]
+
+--- address ---
+[ [ 'gabriel', 'address', 'baker street, 109', true ],
+  [ 'john', 'address', 'pine street, 88', true ] ]
+
+--- phone ---
+[ [ [ 'john', 'phone', '91234-5555', true ],
+    [ 'gabriel', 'phone', '98888-1111', true ],
+    [ 'gabriel', 'phone', '56789-1010', true ] ] ]
+```
+
+
+About the challenge: 
+```
 // Consider a information model where each record is represented by an immutable tuple. This tuple in this context is called a fact.
 
 // Example of a fact:
@@ -51,3 +102,4 @@ const schema = [
   ['gabriel', 'phone', '56789-1010', true]
 ]
 // Feel free to write the solution in whichever programming language you feel more comfortable.
+```

@@ -20,16 +20,14 @@ const schema = [
 var facts = new Facts(f,schema);
 
 // all the valid facts
-console.log("--- FACTS ---");
+console.log("--- ALL VALID FACTS ---");
 console.log(facts.getCurrentFacts());
 console.log("");
 
-// only valid adress facts
-console.log("--- ADDRESS ---");
-console.log(facts.getCurrentFacts("address"));
-console.log("");
 
-// only valid phone facts
-console.log("--- PHONES ---");
-console.log(facts.getCurrentFacts("phone"));
-console.log("");
+schema.forEach(function(item) {
+	// only valid facts by item type
+	console.log("--- " + item[0] + " ---");
+	console.log(facts.getCurrentFacts(item[0]));
+	console.log("");
+});
